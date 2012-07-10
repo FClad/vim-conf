@@ -18,6 +18,7 @@ filetype on						" detect the type of file
 set backspace=indent,eol,start	" more powerful backspacing
 set completeopt=longest,menuone	" Completion list ordered by longest match
 set ofu=syntaxcomplete#Complete	" Turn on omni completion
+set hidden
 
 
 """"""""""""""""""""
@@ -322,8 +323,6 @@ let g:tex_flavor='latex'
 
 let g:LustyJugglerAltTabMode = 1
 
-let g:DoxygenToolkit_authorName="Francois Clad"
-
 let g:CSApprox_loaded = 1
 let g:Powerline_symbols='fancy'
 let g:Powerline_theme='skwp'
@@ -337,6 +336,12 @@ let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 "don't care about warnings
 let g:syntastic_quiet_warnings=0
+"disable automatic syntax checking on saving
+let g:syntastic_mode_map = { 'mode': 'passive' }
+
+"disable real time auto-completion at startup
+" let g:acp_CompleteoptPreview = 1
+let g:acp_enableAtStartup = 0
 
 "au bufNewFile *.lp 0r ~/.vim/templates/cplex.lp
 
