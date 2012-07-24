@@ -73,6 +73,7 @@ function! s:Project(filename) " <<<
 
     let b:proj_locate_command='silent! wincmd H'
     let b:proj_resize_command='exec ''vertical resize ''.g:proj_window_width'
+	let b:proj_setstatus='setlocal statusline=Project'
     if match(g:proj_flags, '\CF') != -1         " Set the resize commands to nothing
         let b:proj_locate_command=''
         let b:proj_resize_command=''
@@ -93,6 +94,7 @@ function! s:Project(filename) " <<<
         setlocal foldenable foldmethod=marker foldmarker={,} commentstring=%s foldcolumn=0 nonumber noswapfile shiftwidth=1
         setlocal foldtext=ProjFoldText() nobuflisted nowrap
         setlocal winwidth=1
+		exec b:proj_setstatus
         if match(g:proj_flags, '\Cn') != -1
             setlocal number
         endif
@@ -781,7 +783,8 @@ function! s:Project(filename) " <<<
             endif
             exec b:proj_locate_command
         endif
-        exec b:proj_resize_command
+		exec b:proj_resize_command
+		exec b:proj_setstatus
     endfunction ">>>
     " s:Spawn(number) <<<
     "   Spawn an external command on the file
