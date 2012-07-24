@@ -6,6 +6,13 @@
 "=============================================================================
 " See documentation in accompanying help file
 " You may use this code in whatever way you see fit.
+if !exists('g:proj_defaultfile')
+	if filereadable('.vimproject')
+		let g:proj_defaultfile = '.vimproject'
+	else
+		let g:proj_defaultfile = '~/.vimprojects'
+	endif
+endif
 
 if exists('loaded_project') || &cp
   finish
@@ -21,7 +28,7 @@ function! s:Project(filename) " <<<
         let filename=bufname(g:proj_running)
     else
         if strlen(a:filename) == 0
-            let filename ='~/.vimprojects'      " Default project filename
+            let filename = g:proj_defaultfile      " Default project filename
         else
             let filename = a:filename
         endif
