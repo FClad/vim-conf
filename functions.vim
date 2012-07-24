@@ -2,6 +2,16 @@
 "    Functions     "
 """"""""""""""""""""
 
+" Smart make
+function! SmartMake()
+	if filereadable("Makefile") || filereadable("makefile")
+		execute "!make"
+	elseif (&ft == "tex")
+		execute "!latex " . expand("%") . " && dvipdf " . expand("%:t:r") . ".dvi"
+	elseif ($ft == "c")
+		execute "!make " . expand("%")
+	endif
+endfunction
 
 " Return the syntax highlight group under the cursor ''
 function! StatuslineCurrentHighlight()

@@ -24,7 +24,7 @@ imap		<C-s>		<C-o><C-s>
 vmap		<C-s>		<C-c><C-s>
 
 " Make with F2
-nnoremap	<F2>		:!make<CR>
+nnoremap	<F2>		:call SmartMake()<CR>
 imap		<F2>		<C-o><F2>
 vmap		<F2>		<C-c><F2>
 
