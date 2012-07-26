@@ -25,3 +25,6 @@
 [submodule "bundle/pathogen"]
 	path = bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+[submodule "bundle/projexplorer"]
+	path = bundle/projexplorer
+	url = https://github.com/FClad/vim-projexplorer.git
