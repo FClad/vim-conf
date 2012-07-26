@@ -8,10 +8,14 @@
 "     General      "
 """"""""""""""""""""
 
-call pathogen#infect()			" Enable Pathogen
-call pathogen#helptags()
-set term=xterm-256color			" Allow 256 colors themes and extended key mappings (e.g. SHIFT)
 set nocompatible				" Use Vim settings, rather then Vi settings (much better!).
+
+runtime bundle/pathogen/autoload/pathogen.vim	" Enable Pathogen
+call pathogen#infect()
+call pathogen#helptags()
+
+
+set term=xterm-256color			" Allow 256 colors themes and extended key mappings (e.g. SHIFT)
 
 filetype plugin on				" Load filetype plugins
 filetype indent on				" Load filetype indents
