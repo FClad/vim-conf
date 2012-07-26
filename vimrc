@@ -130,16 +130,16 @@ set smarttab					" Use tabs at the start of a line, spaces elsewhere
 " Include external configuration files "
 """"""""""""""""""""""""""""""""""""""""
 
-source ~/.vim/functions.vim
-source ~/.vim/mappings.vim
-source ~/.vim/plugins.vim
+source ~/.vim/includes/functions.vim
+source ~/.vim/includes/mappings.vim
+source ~/.vim/includes/plugins.vim
 
 
 """""""""""""""""""""""""""""""
 " Load type specific settings "
 """""""""""""""""""""""""""""""
 
-autocmd FileType tex	source ~/.vim/tex.vim
+autocmd FileType tex	source ~/.vim/includes/tex.vim
 
 autocmd FileType c		set syntax=c.doxygen
 autocmd FileType cpp	set syntax=cpp.doxygen
