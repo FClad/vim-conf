@@ -13,7 +13,8 @@ Requirements
 * [Solarized](http://ethanschoonover.com/solarized) color scheme for your terminal emulator
 * [Patched
   fonts](https://github.com/Lokaltog/vim-powerline/wiki/Patched-fonts) for
-  the powerline plugin
+  the powerline plugin (UPDATE: patched Monaco font is now available in the
+  fonts directory)
 
 
 Install
