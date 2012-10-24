@@ -14,8 +14,9 @@ runtime bundle/pathogen/autoload/pathogen.vim	" Enable Pathogen
 call pathogen#infect()
 call pathogen#helptags()
 
-
-set term=xterm-256color			" Allow 256 colors themes and extended key mappings (e.g. SHIFT)
+if has("unix")
+	set term=xterm-256color			" Allow 256 colors themes and extended key mappings (e.g. SHIFT)
+endif
 
 filetype plugin on				" Load filetype plugins
 filetype indent on				" Load filetype indents
@@ -25,6 +26,7 @@ set completeopt=longest,menuone	" Completion list ordered by longest match
 set ofu=syntaxcomplete#Complete	" Turn on omni completion
 set wildmenu					" Allow tab completion in Vim menus
 set hidden						" Allow hidden buffers
+set enc=utf8
 
 
 """"""""""""""""""""
@@ -63,7 +65,11 @@ set mouse=a						" Enable mouse integration
 
 if has("gui_running")
     set guioptions=egmrt
-	set guifont=Menlo:h12
+	if has("win32")
+		set guifont=Consolas\ for\ Powerline
+	else
+		set guifont=Source\ Code\ Pro:h13
+	endif
 endif
 
 
@@ -126,6 +132,14 @@ set noexpandtab					" Real tabs please!
 set smarttab					" Use tabs at the start of a line, spaces elsewhere
 
 
+"""""""""""
+" Folding "
+"""""""""""
+
+set foldlevel=0
+set foldnestmax=1
+
+
 """"""""""""""""""""""""""""""""""""""""
 " Include external configuration files "
 """"""""""""""""""""""""""""""""""""""""
@@ -139,10 +153,18 @@ source ~/.vim/includes/plugins.vim
 " Load type specific settings "
 """""""""""""""""""""""""""""""
 
-autocmd FileType tex	source ~/.vim/includes/tex.vim
+"autocmd FileType tex	source ~/.vim/includes/tex.vim
 
+" Syntax
 autocmd FileType c		set syntax=c.doxygen
 autocmd FileType cpp	set syntax=cpp.doxygen
+
+"Folding
+autocmd FileType python	set foldmethod=indent
+autocmd FileType tex	set foldmethod=indent
+autocmd FileType c		set foldmethod=syntax
+autocmd FileType cpp	set foldmethod=syntax
+
 
 """"""""""""""""""""
 "  Miscellaneous   "
