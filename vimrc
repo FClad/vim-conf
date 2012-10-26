@@ -66,9 +66,14 @@ set mouse=a						" Enable mouse integration
 if has("gui_running")
     set guioptions=egmrt
 	if has("win32")
+		" Windows specific stuff goes here
 		set guifont=Consolas\ for\ Powerline
-	else
+	elseif has("gui_macvim")
+		" MacVim (i.e. OSX) parameters
 		set guifont=Source\ Code\ Pro:h13
+	else
+		" Linux parameters
+		set guifont=Source\ Code\ Pro\ 9
 	endif
 endif
 
