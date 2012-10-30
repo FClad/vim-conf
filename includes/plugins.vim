@@ -32,3 +32,7 @@ let g:indexer_projectsSettingsFilename = '.vimproject'
 "show function prototype
 let OmniCpp_ShowPrototypeInAbbr = 1
 
+"tell Vimux to execute its commands in the nearest
+"inactive pane rather than creating a new one.
+let g:VimuxUseNearestPane = 1
+
