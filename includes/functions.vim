@@ -2,9 +2,15 @@
 "    Functions     "
 """"""""""""""""""""
 
+command SmartMake :call SmartMake()
+
 " Smart make
 function! SmartMake()
-	if filereadable("Makefile") || filereadable("makefile")
+	let s:tmux = system("echo $TMUX")
+
+	if s:tmux != "\n"
+		execute "VimuxRunLastCommand"
+	elseif filereadable("Makefile") || filereadable("makefile")
 		execute "!make"
 	elseif (&ft == "tex")
 		execute "!latex " . expand("%") . " && dvipdf " . expand("%:t:r") . ".dvi"
