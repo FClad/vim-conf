@@ -34,7 +34,7 @@ imap		<F3>		<C-c><F3>
 vmap		<F3>		<C-c><F3>
 
 " Switch to source/header file with F4
-nnoremap	<F4>		:A<CR>
+nnoremap	<F4>		:SmartAlt<CR>
 imap		<F4>		<C-o><F4>
 vmap		<F4>		<Esc><F4>
 

@@ -2,7 +2,20 @@
 "    Functions     "
 """"""""""""""""""""
 
+command SmartAlt :call SmartAlt()
 command SmartMake :call SmartMake()
+
+" Smart alternate
+function! SmartAlt ()
+	let pdffile = expand ("%:t:r") . ".pdf"
+	if (&ft == "tex")
+		if has("unix") && system("uname") == "Darwin\n" && filereadable (pdffile)
+			execute "!open -a Skim " . pdffile
+		endif
+	else
+		execute "A"
+	endif
+endfunction
 
 " Smart make
 function! SmartMake()
