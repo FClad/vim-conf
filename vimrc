@@ -42,6 +42,7 @@ colorscheme solarized			" Coloration theme
 "  Files/Backups   " 
 """"""""""""""""""""
 
+set clipboard=unnamed
 set nobackup					" Turn backup off (use SVN, GIT or TimeMachine instead)
 set nowb
 try

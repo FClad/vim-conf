@@ -93,10 +93,6 @@ imap		<M-Left>	<C-o><M-Left>
 noremap		<M-Right>	e
 imap		<M-Right>	<C-o><M-Right>
 
-" Copy/paste integration with OS X clipboard
-vnoremap	y			y:call system("pbcopy", getreg("\""))<CR>
-"nnoremap	p			:call setreg("\"",system("pbpaste"))<CR>p
-
 "  In visual mode when you press * or # to search for the current selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
