@@ -160,6 +160,8 @@ source ~/.vim/includes/plugins.vim
 """""""""""""""""""""""""""""""
 
 "autocmd FileType tex	source ~/.vim/includes/tex.vim
+autocmd FileType tex	set nocindent
+autocmd FileType tex	set nojoinspaces
 
 " Syntax
 autocmd FileType c		set syntax=c.doxygen
