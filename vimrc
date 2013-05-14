@@ -37,6 +37,7 @@ syntax enable					" Activate syntax coloration
 set background=dark				" Default background
 colorscheme solarized			" Coloration theme
 
+set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim	" Enable Powerline
 
 """"""""""""""""""""
 "  Files/Backups   " 
@@ -71,10 +72,10 @@ if has("gui_running")
 		set guifont=Consolas\ for\ Powerline
 	elseif has("gui_macvim")
 		" MacVim (i.e. OSX) parameters
-		set guifont=Source\ Code\ Pro:h13
+		set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 	else
 		" Linux parameters
-		set guifont=Source\ Code\ Pro\ 9
+		set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 	endif
 endif
 

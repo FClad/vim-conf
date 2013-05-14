@@ -7,9 +7,6 @@ let g:tex_flavor='latex'
 let g:LustyJugglerAltTabMode = 1
 
 let g:CSApprox_loaded = 1
-let g:Powerline_symbols='fancy'
-let g:Powerline_theme='skwp'
-let g:Powerline_colorscheme='skwp'
 
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
