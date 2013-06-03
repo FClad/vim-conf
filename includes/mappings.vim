@@ -53,7 +53,7 @@ nnoremap	<F7>		:let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 imap		<F7>		<Esc><F7>
 
 " Toggle project
-nmap <silent> <F8> <Plug>ToggleProject
+nmap		<F8>		:NERDTreeToggle<CR>
 imap		<F8>		<Esc><F8>
 vmap		<F8>		<Esc><F8>
 
