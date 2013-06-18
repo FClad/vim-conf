@@ -7,10 +7,11 @@ command SmartMake :call SmartMake()
 
 " Smart alternate
 function! SmartAlt ()
-	let pdffile = expand ("%:t:r") . ".pdf"
-	if (&ft == "tex")
-		if has("unix") && system("uname") == "Darwin\n" && filereadable (pdffile)
-			execute "!open -a Skim " . pdffile
+	let l:pdffile = expand ("%:t:r") . ".pdf"
+
+	if &ft == "tex"
+		if has("unix") && system("uname") == "Darwin\n" && filereadable (l:pdffile)
+			call system("open -a Skim " . l:pdffile)
 		endif
 	else
 		execute "A"
@@ -19,16 +20,30 @@ endfunction
 
 " Smart make
 function! SmartMake()
-	let s:tmux = system("echo $TMUX")
+	" Check whether Vim is run inside a Tmux session
+	let l:tmux = system("echo $TMUX")
+	let l:cmd = ""
 
-	if s:tmux != "\n"
-		execute "VimuxRunLastCommand"
-	elseif filereadable("Makefile") || filereadable("makefile")
-		execute "!make"
-	elseif (&ft == "tex")
-		execute "!latex " . expand("%") . " && dvipdf " . expand("%:t:r") . ".dvi"
-	elseif ($ft == "c")
-		execute "!make " . expand("%")
+	" Try to determine the appropriate compiling command
+	if filereadable("Makefile") || filereadable("makefile")
+		let l:cmd = "make"
+	elseif &ft == "c"
+		let l:cmd = "make " . expand("%")
+	elseif &ft == "tex"
+		let l:cmd = "latex " . expand("%") . " && dvipdf " . expand("%:t:r") . ".dvi"
+	endif
+
+	" Execute command
+	if l:tmux != "\n"
+		if exists("g:VimuxRunnerPaneIndex")
+			call VimuxRunLastCommand()
+		elseif l:cmd != ""
+			call VimuxRunCommand(l:cmd)
+		else
+			call VimuxPromptCommand()
+		endif
+	elseif l:cmd != ""
+		call system(l:cmd)
 	endif
 endfunction
 
