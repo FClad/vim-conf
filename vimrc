@@ -127,7 +127,7 @@ set laststatus=2				" Always show the status line
 " Text Formatting  " 
 """"""""""""""""""""
 
-set textwidth=75				" Set line width
+set textwidth=80				" Set line width
 set fo=tcrqn					" See Help (complex)
 set ai							" Auto-indent
 set si							" Smart-indent
