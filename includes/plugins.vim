@@ -29,6 +29,7 @@ let OmniCpp_ShowPrototypeInAbbr = 1
 "tell Vimux to execute its commands in the nearest
 "inactive pane rather than creating a new one.
 let g:VimuxUseNearestPane = 1
+let g:VimuxUseNearestReverse = 1
 
 "Automatically close the NERDTree window after opening a file
 let g:NERDTreeQuitOnOpen = 1
