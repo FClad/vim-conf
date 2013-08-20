@@ -43,7 +43,7 @@ function! SmartMake()
 			call VimuxPromptCommand()
 		endif
 	elseif l:cmd != ""
-		call system(l:cmd)
+		execute "!" . l:cmd
 	endif
 endfunction
 
