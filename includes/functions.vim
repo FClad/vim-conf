@@ -36,13 +36,16 @@ function! SmartMake()
 	" Execute command
 	if l:tmux != "\n"
 		if exists("g:VimuxRunnerPaneIndex")
+			echo "Last command re-sent to background Tmux session."
 			call VimuxRunLastCommand()
 		elseif l:cmd != ""
+			echo "Auto-determined command sent to background Tmux session."
 			call VimuxRunCommand(l:cmd)
 		else
 			call VimuxPromptCommand()
 		endif
 	elseif l:cmd != ""
+		echo "No Tmux session found."
 		execute "!" . l:cmd
 	endif
 endfunction
