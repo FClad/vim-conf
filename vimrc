@@ -37,7 +37,14 @@ syntax enable					" Activate syntax coloration
 set background=dark				" Default background
 colorscheme solarized			" Coloration theme
 
-set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim	" Enable Powerline
+" Enable Powerline
+if has("unix")
+	if system('uname')=~'Darwin'
+		set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+	else
+		set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+	endif
+endif
 
 """"""""""""""""""""
 "  Files/Backups   " 
