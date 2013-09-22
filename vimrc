@@ -161,8 +161,10 @@ source ~/.vim/includes/plugins.vim
 """""""""""""""""""""""""""""""
 
 "autocmd FileType tex	source ~/.vim/includes/tex.vim
-autocmd FileType tex	set nocindent
-autocmd FileType tex	set nojoinspaces
+autocmd FileType tex	set nocindent	" Disable indentation
+autocmd FileType tes	let g:tex_indent_brace=0
+autocmd FileType tex	set nojoinspaces	" Prevents Vim from adding additional spaces when reformatting a paragraph
+autocmd FileType tex	let g:surround_{char2nr('c')} = "\\\1command\1{\r}"	" Enable text surrounding with \cmd{..}
 
 " Syntax
 autocmd FileType c		set syntax=c.doxygen
