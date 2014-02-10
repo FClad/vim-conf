@@ -8,6 +8,8 @@ let g:LustyJugglerAltTabMode = 1
 
 let g:CSApprox_loaded = 1
 
+let g:indexer_projectsSettingsFilename = '.vimproject'
+
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 "automatically jump to the error when saving the file
