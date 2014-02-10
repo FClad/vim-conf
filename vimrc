@@ -183,6 +183,9 @@ autocmd FileType tex	set foldmethod=indent
 autocmd FileType c		set foldmethod=syntax
 autocmd FileType cpp	set foldmethod=syntax
 
+"Special scripts
+autocmd FileType c		source ~/.vim/includes/cfolding.vim
+
 
 """"""""""""""""""""
 "  Miscellaneous   "
