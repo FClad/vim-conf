@@ -153,6 +153,9 @@ set smarttab					" Use tabs at the start of a line, spaces elsewhere
 set foldlevel=0
 set foldnestmax=1
 
+au BufWinLeave * mkview				" Persistent folds (save on quit)
+au BufWinEnter * silent loadview	" Persistent folds (load on open)
+
 
 """"""""""""""""""""""""""""""""""""""""
 " Include external configuration files "
