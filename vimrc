@@ -35,7 +35,6 @@ set enc=utf8
 
 syntax enable					" Activate syntax coloration
 set background=dark				" Default background
-colorscheme solarized			" Coloration theme
 
 " Enable Powerline
 if has("unix")
@@ -44,6 +43,14 @@ if has("unix")
 	else
 		set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 	endif
+endif
+
+" Set color scheme
+if has("gui_running")
+	colorscheme monokai
+else
+	colorscheme solarized
+	let g:powerline_config_overrides={"ext": {"vim": {"colorscheme": "solarized"}}}
 endif
 
 """"""""""""""""""""
