@@ -46,6 +46,9 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
+[submodule "bundle/monokai"]
+	path = bundle/monokai
+	url = https://github.com/lsdr/monokai.git
 [submodule "bundle/tskeleton"]
 	path = bundle/tskeleton
 	url = https://github.com/tomtom/tskeleton_vim.git

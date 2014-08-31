@@ -35,7 +35,6 @@ set enc=utf8
 
 syntax enable					" Activate syntax coloration
 set background=dark				" Default background
-colorscheme solarized			" Coloration theme
 
 " Enable Powerline
 if has("unix")
@@ -44,6 +43,14 @@ if has("unix")
 	else
 		set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 	endif
+endif
+
+" Set color scheme
+if has("gui_running")
+	colorscheme monokai
+else
+	colorscheme solarized
+	let g:powerline_config_overrides={"ext": {"vim": {"colorscheme": "solarized"}}}
 endif
 
 """"""""""""""""""""
@@ -153,8 +160,39 @@ set smarttab					" Use tabs at the start of a line, spaces elsewhere
 set foldlevel=0
 set foldnestmax=1
 
-au BufWinLeave * mkview				" Persistent folds (save on quit)
-au BufWinEnter * silent loadview	" Persistent folds (load on open)
+" From http://vim.wikia.com/wiki/Make_views_automatic
+let g:skipview_files = [
+            \ '[EXAMPLE PLUGIN BUFFER]'
+            \ ]
+function! MakeViewCheck()
+    if has('quickfix') && &buftype =~ 'nofile'
+        " Buffer is marked as not a file
+        return 0
+    endif
+    if empty(glob(expand('%:p')))
+        " File does not exist on disk
+        return 0
+    endif
+    if len($TEMP) && expand('%:p:h') == $TEMP
+        " We're in a temp dir
+        return 0
+    endif
+    if len($TMP) && expand('%:p:h') == $TMP
+        " Also in temp dir
+        return 0
+    endif
+    if index(g:skipview_files, expand('%')) >= 0
+        " File is in skip list
+        return 0
+    endif
+    return 1
+endfunction
+augroup vimrcAutoView
+    autocmd!
+    " Autosave & Load Views.
+    autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
+    autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
+augroup end
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -176,7 +214,7 @@ autocmd BufNewFile *.h	TSkeletonSetup template.h
 
 "autocmd FileType tex	source ~/.vim/includes/tex.vim
 autocmd FileType tex	set nocindent	" Disable indentation
-autocmd FileType tes	let g:tex_indent_brace=0
+autocmd FileType tex	let g:tex_indent_brace=0
 autocmd FileType tex	set nojoinspaces	" Prevents Vim from adding additional spaces when reformatting a paragraph
 autocmd FileType tex	let g:surround_{char2nr('c')} = "\\\1command\1{\r}"	" Enable text surrounding with \cmd{..}
 
