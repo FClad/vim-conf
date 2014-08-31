@@ -170,6 +170,10 @@ source ~/.vim/includes/plugins.vim
 " Load type specific settings "
 """""""""""""""""""""""""""""""
 
+" Templates
+autocmd BufNewFile *.c	TSkeletonSetup template.c
+autocmd BufNewFile *.h	TSkeletonSetup template.h
+
 "autocmd FileType tex	source ~/.vim/includes/tex.vim
 autocmd FileType tex	set nocindent	" Disable indentation
 autocmd FileType tes	let g:tex_indent_brace=0
