@@ -1,6 +1,7 @@
 temp/
 undo/
 spell/
+cache/
 tags
 .netrwhist
 *.cache
