@@ -33,8 +33,8 @@ let g:VimuxUseNearestReverse = 1	" Select the most distant inactive pane
 
 " tSkeleton
 let g:tskelDateFormat = '%Y-%m-%d'
-let g:tskelUserName = 'Francois Clad'
-let g:tskelUserEmail = 'francois.clad@imdea.org'
+let g:tskelUserName = '<your name>'
+let g:tskelUserEmail = '<your email address>'
 autocmd BufNewFile *.c TSkeletonSetup template.c
 autocmd BufNewFile *.h TSkeletonSetup template.h
 
