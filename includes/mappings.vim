@@ -2,109 +2,149 @@
 "   Key mappings    "
 """""""""""""""""""""
 
-" (Un)indent selected lines and keep highlighting
-vnoremap	>			>gv
-vmap		<TAB>		>
-vnoremap	<			<gv
-vmap		<S-TAB>		<
+" Fix <S-Fx> mapping when GUI is not running
+if !has("gui_running")
+	map	<Esc>[1;2P	<S-F1>
+	map	<Esc>[1;2Q	<S-F2>
+	map	<Esc>[1;2R	<S-F3>
+	map	<Esc>[18;2~	<S-F7>
+endif
 
-" Undo with Ctrl-Z
-nnoremap	<C-z>		u
-imap		<C-z>		<C-o><C-z>
-vmap		<C-z>		<C-c><C-z>
 
-" Redo with Ctrl-R
-"nnoremap	<C-r>		:redo<CR>
-imap		<C-r>		<C-o><C-r>
-vmap		<C-r>		<C-c><C-r>
+" <TAB> and <Shift-TAB> to change indentation level while keeping selection
+vnoremap			<TAB>		>gv
+vnoremap			<S-TAB>		<gv
 
-" Save file with Ctrl-S
-nnoremap	<C-s>		:w<CR>
-imap		<C-s>		<C-o><C-s>
-vmap		<C-s>		<C-c><C-s>
+" <Ctrl-Z> to undo the last change
+nnoremap			<C-z>		u
+imap				<C-z>		<C-o><C-z>
+vmap				<C-z>		<C-c><C-z>
 
-" Make with F2
-nnoremap	<F2>		:SmartMake<CR>
-imap		<F2>		<C-o><F2>
-vmap		<F2>		<C-c><F2>
+" <Ctrl-Shift-Z> to toggle Gundo pane
+nnoremap			<C-S-z>		:GundoToggle<CR>
+imap				<C-S-z>		<C-c><C-S-z>
+vmap				<C-S-z>		<C-c><C-S-z>
 
-" Switch files in an MRU order with F3
-nnoremap	<F3>		:LustyJuggler<CR>
-imap		<F3>		<C-c><F3>
-vmap		<F3>		<C-c><F3>
+" <Ctrl-R> to redo the last change even in Insert or Visual modes
+inoremap			<C-r>		<C-o><C-r>
+vnoremap			<C-r>		<C-c><C-r>
 
-" Switch to source/header file with F4
-nnoremap	<F4>		:SmartAlt<CR>
-imap		<F4>		<C-o><F4>
-vmap		<F4>		<Esc><F4>
+" <Ctrl-S> to save the current file
+nnoremap			<C-s>		:w<CR>
+imap				<C-s>		<C-o><C-s>
+vmap				<C-s>		<C-c><C-s>
 
-" Enable/disable spell checking with F5
-nnoremap	<F5>		:set spell! spell?<CR>
-imap		<F5>		<C-o><F5>
-vmap		<F5>		<C-c><F5>
 
-" Enable/disable search matches highlighting with F6
-nnoremap	<F6>		:set hlsearch! hlsearch?<CR>
-imap		<F6>		<C-o><F6>
-vmap		<F6>		<C-c><F6>
+" <Shift-Arrows> to move between windows
+nnoremap <silent>	<S-Left>	:wincmd h<CR>
+imap				<S-Left>	<C-c><S-Left>
+vmap				<S-Left>	<C-c><S-Left>
 
-" Highlight all occurences of the current word with F7
-nnoremap	<F7>		:let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-imap		<F7>		<Esc><F7>
+nnoremap <silent>	<S-Right>	:wincmd l<CR>
+imap				<S-Right>	<C-c><S-Right>
+vmap				<S-Right>	<C-c><S-Right>
 
-" Toggle project
-nmap		<F8>		:NERDTreeToggle<CR>
-imap		<F8>		<Esc><F8>
-vmap		<F8>		<Esc><F8>
+nnoremap <silent>	<S-Up>		:wincmd k<CR>
+imap				<S-Up>		<C-c><S-Up>
+vmap				<S-Up>		<C-c><S-Up>
 
-" Toggle tagbar
-nnoremap	<F9>		:TagbarToggle<CR>
-imap		<F9>		<Esc><F9>
-vmap		<F9>		<Esc><F9>
+nnoremap <silent>	<S-Down>	:wincmd j<CR>
+imap				<S-Down>	<C-c><S-Down>
+vmap				<S-Down>	<C-c><S-Down>
 
-" Move between windows with Shift and arrows
-nnoremap	<S-Left>	:wincmd h<CR>
-imap		<S-Left>	<C-c><S-Left>
-vmap		<S-Left>	<C-c><S-Left>
 
-nnoremap	<S-Right>	:wincmd l<CR>
-imap		<S-Right>	<C-c><S-Right>
-vmap		<S-Right>	<C-c><S-Right>
+" <Alt-up/down> to move 10 lines upper/lower
+noremap <silent>	<M-Up>		10<Up>
+imap				<M-Up>		<C-o><M-Up>
 
-nnoremap	<S-Up>		:wincmd k<CR>
-imap		<S-Up>		<C-o><S-Up>
-vmap		<S-Up>		<C-c><S-Up>
+noremap <silent>	<M-Down>	10<Down>
+imap				<M-Down>	<C-o><M-Down>
 
-nnoremap	<S-Down>	:wincmd j<CR>
-imap		<S-Down>	<C-o><S-Down>
-vmap		<S-Down>	<C-c><S-Down>
 
-" Move 10 lines upper/lower with Alt and up/down arrows
-noremap		<M-Up>		10<Up>
-imap		<M-Up>		<C-o><M-Up>
+" <Alt-left/right> to move between words
+noremap <silent>	<M-Left>	b
+imap				<M-Left>	<C-o><M-Left>
 
-noremap		<M-Down>	10<Down>
-imap		<M-Down>	<C-o><M-Down>
+noremap <silent>	<M-Right>	e
+imap				<M-Right>	<C-o><M-Right><right>
 
-" Move between words with Alt and left/right arrows
-noremap		<M-Left>	b
-imap		<M-Left>	<C-o><M-Left>
 
-noremap		<M-Right>	e
-imap		<M-Right>	<C-o><M-Right>
+" <*> and <#> in Visual mode to search for the current selection
+vnoremap <silent>	*			:call VisualSearch('f')<CR>
+vnoremap <silent>	#			:call VisualSearch('b')<CR>
 
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
 
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+" <Leader-g> for a pre-filled Vimgrep
+map					<leader>g	:vimgrep // **/*.<left><left><left><left><left><left><left>
 
-" Auto-completion mappings
-inoremap	<expr> <CR>	pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" <F1> to quickly change the active buffer
+nnoremap			<F1>		:LustyJuggler<CR>
+imap				<F1>		<C-c><F3>
+vmap				<F1>		<C-c><F3>
+
+" <Shift-F1> to open alternate file (e.g. %.h from %.c)
+nnoremap			<S-F1>		:call SmartAlt()<CR>
+imap				<S-F1>		<C-c><S-F1>
+vmap				<S-F1>		<C-c><S-F1>
+
+" <F2> to manage opened buffers
+nnoremap			<F2>		:Unite buffer<CR>
+imap				<F2>		<C-c><F2>
+vmap				<F2>		<C-c><F2>
+
+" <Shift-F2> to open a new file
+nnoremap			<S-F2>		:Unite file<CR>
+imap				<S-F2>		<C-c><S-F2>
+vmap				<S-F2>		<C-c><S-F2>
+
+" <F3> to toggle the Quickfix pane
+nnoremap <silent>	<F3>		:call ToggleQuickfixList()<CR>
+imap				<F3>		<C-c><F3>
+vmap				<F3>		<C-c><F3>
+
+" <Shift-F3> to toggle Tagbar pane
+nnoremap <silent>	<S-F3>		:TagbarToggle<CR>
+imap				<S-F3>		<C-c><S-F3>
+vmap				<S-F3>		<C-c><S-F3>
+
+" <F4> to run a syntax check
+nnoremap <silent>	<F4>		:SyntasticCheck<CR>
+imap				<F4>		<C-o><F4>
+vmap				<F4>		<C-c><F4>
+
+" <Shift-F4> to (re)generate tags
+nnoremap <silent>	<S-F4>		:!make ctags<CR>
+imap				<S-F4>		<C-c><S-F4>
+vmap				<S-F4>		<C-c><S-F4>
+
+" <F5> to build (make) the program
+nnoremap			<F5>		:call SmartMake()<CR>
+imap				<F5>		<C-o><F5>
+vmap				<F5>		<C-c><F5>
+
+" <Shift-F5> to change build command
+nnoremap			<S-F5>		:VimuxPromptCommand<CR>
+imap				<S-F5>		<C-o><S-F5>
+vmap				<S-F5>		<C-c><S-F5>
+
+" <F7> to search and highlight the word under cursor or the selected text
+nnoremap <silent>	<F7>		:let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+imap				<F7>		<C-o><F7>
+vnoremap <silent>	<F7>		:call VisualSearch('f')<CR>
+
+" <Shift-F7> to 'Vimgrep' the word under cursor or the selected text
+nnoremap			<S-F7>		:call CmdLine('vimgrep /'.expand('<cword>').'/gj ')<CR>
+imap				<S-F7>		<Esc><S-F7>
+vnoremap			<S-F7>		:call VisualSearch('gv')<CR>
+
+" <F8> to toggle search matches highlighting
+nnoremap			<F8>		:set hlsearch! hlsearch?<CR>
+imap				<F8>		<C-o><F8>
+vmap				<F8>		<C-c><F8>
+
+" <Shift-F8> to toggle spell checker
+nnoremap			<S-F8>		:set spell! spell?<CR>
+imap				<S-F8>		<C-o><S-F8>
+vmap				<S-F8>		<C-c><S-F8>
 

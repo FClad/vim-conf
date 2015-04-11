@@ -2,8 +2,6 @@
 "    Functions     "
 """"""""""""""""""""
 
-command SmartAlt :call SmartAlt()
-command SmartMake :call SmartMake()
 
 " Smart alternate
 function! SmartAlt ()
@@ -17,6 +15,7 @@ function! SmartAlt ()
 		execute "A"
 	endif
 endfunction
+
 
 " Smart make
 function! SmartMake()
@@ -34,7 +33,10 @@ function! SmartMake()
 	endif
 
 	" Execute command
-	if l:tmux != "\n"
+	if v:servername != "" && l:cmd == "make"
+		echo "Running Make in background."
+		execute "AsyncMake"
+	elseif l:tmux != "\n"
 		if exists("g:VimuxRunnerPaneIndex")
 			echo "Last command re-sent to background Tmux session."
 			call VimuxRunLastCommand()
@@ -49,6 +51,7 @@ function! SmartMake()
 		execute "!" . l:cmd
 	endif
 endfunction
+
 
 " Return the syntax highlight group under the cursor ''
 function! StatuslineCurrentHighlight()
@@ -79,7 +82,7 @@ function! VisualSearch(direction) range
     if a:direction == 'b'
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+        call CmdLine("vimgrep " . '/'. l:pattern . '/gj ')
     elseif a:direction == 'f'
         execute "normal /" . l:pattern . "^M"
     endif

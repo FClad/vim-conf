@@ -1,9 +1,4 @@
 temp/
 undo/
-spell/
-view/
 cache/
-tags
-.netrwhist
-*.cache
-.DS_Store
+bundle/

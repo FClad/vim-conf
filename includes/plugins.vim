@@ -2,37 +2,39 @@
 "  Plugins configuration   "
 """"""""""""""""""""""""""""
 
-let g:tex_flavor='latex'
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 0	" Tags file based completion
+let g:tex_flavor='latex'		" Force type of empty .tex files to 'tex'
 
-let g:LustyJugglerAltTabMode = 1
+" Syntastic
+let g:syntastic_enable_signs=1	" Mark syntax errors with :signs
+let g:syntastic_auto_jump=0		" Do not automatically jump to the first error
+let g:syntastic_auto_loc_list=1 " Show the error list automatically
+let g:syntastic_mode_map = { 'mode': 'passive' } " Disable auto-check on saving
 
-let g:CSApprox_loaded = 1
+" Vim-airline
+let g:airline_powerline_fonts = 1	" Enable fancy symbols
 
-let g:indexer_projectsSettingsFilename = '.vimproject'
+" LustyJuggler
+let g:LustyJugglerAltTabMode = 1	" Enable buffer cycling by repressing hotkey
 
-"mark syntax errors with :signs
-let g:syntastic_enable_signs=1
-"automatically jump to the error when saving the file
-let g:syntastic_auto_jump=0
-"show the error list automatically
-let g:syntastic_auto_loc_list=1
-"don't care about warnings
-let g:syntastic_quiet_warnings=0
-"disable automatic syntax checking on saving
-let g:syntastic_mode_map = { 'mode': 'passive' }
+" Unite
+call unite#custom#profile('default', 'context', {
+\   'winheight': 10,
+\ })
 
-"disable real time auto-completion at startup
-" let g:acp_CompleteoptPreview = 1
-let g:acp_enableAtStartup = 0
+" Surround
+autocmd FileType tex
+\ let g:surround_{char2nr('c')} = "\\\1command\1{\r}" " Surround w/ TeX command
 
-"show function prototype
-let OmniCpp_ShowPrototypeInAbbr = 1
+" Vimux
+let g:VimuxUseNearestPane = 1		" Allow Vimux to run in an existing pane
+let g:VimuxUseNearestReverse = 1	" Select the most distant inactive pane
 
-"tell Vimux to execute its commands in the nearest
-"inactive pane rather than creating a new one.
-let g:VimuxUseNearestPane = 1
-let g:VimuxUseNearestReverse = 1
-
-"Automatically close the NERDTree window after opening a file
-let g:NERDTreeQuitOnOpen = 1
+" tSkeleton
+let g:tskelDateFormat = '%Y-%m-%d'
+let g:tskelUserName = 'Francois Clad'
+let g:tskelUserEmail = 'francois.clad@imdea.org'
+autocmd BufNewFile *.c TSkeletonSetup template.c
+autocmd BufNewFile *.h TSkeletonSetup template.h
 

@@ -3,7 +3,7 @@ My Vim configuration
 
 Author: Francois Clad <francois.clad@gmail.com>
 
-Fork me on GitHub at https://github.com/FClad/My-Vim-conf.
+Fork me on GitHub at https://github.com/fclad/vim-conf.
 
 Requirements
 ------------
@@ -22,29 +22,37 @@ Install
 
 1. Clone this repository
 
-		git clone git://github.com/FClad/My-Vim-conf.git
+		git clone git://github.com/fclad/vim-conf.git
 
 2. Run the installation script
 
-		bash My-Vim-conf/install.sh
+		bash vim-conf/install.sh
 
 
 Plugins
 -------
 
-* [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332): Plugin manager
-
-* [Alternate](http://www.vim.org/scripts/script.php?script_id=31): Quickly switch between source and header files
-* [AutoCompIPop](http://www.vim.org/scripts/script.php?script_id=1879): Automatically opens popup menu for completions 
-* [DoxygenToolkit](http://www.vim.org/scripts/script.php?script_id=987): Simple commands to add Doxygen documentation fields
-* [Fugitive](http://www.vim.org/scripts/script.php?script_id=2975): Git wrapper
-* [Indexer](http://www.vim.org/scripts/script.php?script_id=3221): Auto-generate tags and keep them up-to-date
-* [Lusty-Juggler](http://www.vim.org/scripts/script.php?script_id=2050): Switch quickly among your active buffers 
-* [OmniCppComplete](http://www.vim.org/scripts/script.php?script_id=1520): C/C++ omni-completion with ctags database 
-* [Powerline](http://www.vim.org/scripts/script.php?script_id=3881): Status line utility
-* [Project](http://www.vim.org/scripts/script.php?script_id=69): IDE-like project navigation
-* [Solarized](http://www.vim.org/scripts/script.php?script_id=3520): Beautiful color theme
-* [Tagbar](http://www.vim.org/scripts/script.php?script_id=3465): Display tags of the current file ordered by scope
+* [Vundle.vim](http://github.com/gmarik/Vundle.vim): Plugin manager
+* [YouCompleteMe](http://github.com/Valloric/YouCompleteMe): Auto-completion engine
+* [Syntastic](http://github.com/scrooloose/syntastic): Syntax checker
+* [Vim-airline](http://github.com/bling/vim-airline): Status/tab line (replaces vim-powerline)
+* [UltiSnips](http://github.com/sirver/UltiSnips): Snippet engine
+* [Vim-snippets](http://github.com/honza/vim-snippets): Snippet database
+* [Tlib_vim](http://github.com/tomtom/tlib_vim): Requirement for tskeleton_vim
+* [Tskeleton_vim](http://github.com/tomtom/tskeleton_vim): File skeleton manager
+* [Lusty](http://github.com/sjbach/lusty): Fast buffer juggler
+* [Unite.vim](http://github.com/Shougo/unite.vim): Buffers and files explorer
+* [Tagbar](http://github.com/majutsushi/tagbar): Show file tags in a side window
+* [Vim-gitgutter](http://github.com/airblade/vim-gitgutter): Show Git diffs
+* [Vim-markdown](http://github.com/plasticboy/vim-markdown): Add support for Markdown syntax
+* [Gundo.vim](http://github.com/sjl/gundo.vim): Show undo tree
+* [Vim-fugitive](http://github.com/tpope/vim-fugitive): Git wrapper
+* [Vim-surround](http://github.com/tpope/vim-surround): Manage surrounding characters
+* [A.vim](http://github.com/vim-scripts/a.vim): Jump to alternate file (e.g. .h from .c)
+* [Vim-togglelist](http://github.com/milkypostman/vim-togglelist): Toggle Quickfix and Location lists
+* [Vimux](http://github.com/benmills/vimux): Run commands into from Vim into Tmux
+* [Bufkill.vim](http://github.com/vim-scripts/bufkill.vim): Close buffers while keeping the windows
+* [Vim-colorschemes](http://github.com/flazz/vim-colorschemes): Color schemes database
 
 
 References
