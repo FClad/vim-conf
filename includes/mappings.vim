@@ -7,13 +7,18 @@ if !has("gui_running")
 	map	<Esc>[1;2P	<S-F1>
 	map	<Esc>[1;2Q	<S-F2>
 	map	<Esc>[1;2R	<S-F3>
+	map	<Esc>[1;2S	<S-F4>
+	map	<Esc>[17;2~	<S-F6>
 	map	<Esc>[18;2~	<S-F7>
+	map	<Esc>[19;2~	<S-F8>
 endif
 
 
 " <TAB> and <Shift-TAB> to change indentation level while keeping selection
-vnoremap			<TAB>		>gv
-vnoremap			<S-TAB>		<gv
+vnoremap			>			>gv
+vmap				<TAB>		>
+vnoremap			<			<gv
+vmap				<S-TAB>		<
 
 " <Ctrl-Z> to undo the last change
 nnoremap			<C-z>		u
@@ -78,8 +83,8 @@ vnoremap <silent>	#			:call VisualSearch('b')<CR>
 map					<leader>g	:vimgrep // **/*.<left><left><left><left><left><left><left>
 
 
-" <F1> to quickly change the active buffer
-nnoremap			<F1>		:LustyJuggler<CR>
+" <F1> to open CtrlSpace BufferList
+nnoremap			<F1>		:CtrlSpace<CR>
 imap				<F1>		<C-c><F3>
 vmap				<F1>		<C-c><F3>
 
@@ -88,33 +93,33 @@ nnoremap			<S-F1>		:call SmartAlt()<CR>
 imap				<S-F1>		<C-c><S-F1>
 vmap				<S-F1>		<C-c><S-F1>
 
-" <F2> to manage opened buffers
-nnoremap			<F2>		:Unite buffer<CR>
+" <F2> to open CtrlSpace TabList
+nnoremap			<F2>		:CtrlSpace l<CR>
 imap				<F2>		<C-c><F2>
 vmap				<F2>		<C-c><F2>
 
-" <Shift-F2> to open a new file
-nnoremap			<S-F2>		:Unite file<CR>
+" <Shift-F2> to open CtrlSpace FileList
+nnoremap			<S-F2>		:CtrlSpace o<CR>
 imap				<S-F2>		<C-c><S-F2>
 vmap				<S-F2>		<C-c><S-F2>
 
-" <F3> to toggle the Quickfix pane
-nnoremap <silent>	<F3>		:call ToggleQuickfixList()<CR>
+" <F3> to toggle the Location pane
+nnoremap <silent>	<F3>		:LToggle<CR>
 imap				<F3>		<C-c><F3>
 vmap				<F3>		<C-c><F3>
 
-" <Shift-F3> to toggle Tagbar pane
-nnoremap <silent>	<S-F3>		:TagbarToggle<CR>
+" <Shift-F3> to toggle the Quickfix pane
+nnoremap <silent>	<S-F3>		:QToggle<CR>
 imap				<S-F3>		<C-c><S-F3>
 vmap				<S-F3>		<C-c><S-F3>
 
 " <F4> to run a syntax check
-nnoremap <silent>	<F4>		:SyntasticCheck<CR>
+nnoremap <silent>	<F4>		:YcmDiags<CR>
 imap				<F4>		<C-o><F4>
 vmap				<F4>		<C-c><F4>
 
-" <Shift-F4> to (re)generate tags
-nnoremap <silent>	<S-F4>		:!make ctags<CR>
+" <Shift-F4> to toggle Tagbar pane
+nnoremap <silent>	<S-F4>		:TagbarToggle<CR>
 imap				<S-F4>		<C-c><S-F4>
 vmap				<S-F4>		<C-c><S-F4>
 
@@ -131,7 +136,7 @@ vmap				<S-F5>		<C-c><S-F5>
 " <F7> to search and highlight the word under cursor or the selected text
 nnoremap <silent>	<F7>		:let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 imap				<F7>		<C-o><F7>
-vnoremap <silent>	<F7>		:call VisualSearch('f')<CR>
+vnoremap <silent>	<F7>		:call VisualSearch('f')<CR>:set hls<CR>
 
 " <Shift-F7> to 'Vimgrep' the word under cursor or the selected text
 nnoremap			<S-F7>		:call CmdLine('vimgrep /'.expand('<cword>').'/gj ')<CR>

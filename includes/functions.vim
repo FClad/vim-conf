@@ -33,11 +33,8 @@ function! SmartMake()
 	endif
 
 	" Execute command
-	if v:servername != "" && l:cmd == "make"
-		echo "Running Make in background."
-		execute "AsyncMake"
-	elseif l:tmux != "\n"
-		if exists("g:VimuxRunnerPaneIndex")
+	if l:tmux != "\n"
+		if exists("g:VimuxRunnerIndex")
 			echo "Last command re-sent to background Tmux session."
 			call VimuxRunLastCommand()
 		elseif l:cmd != ""

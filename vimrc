@@ -22,6 +22,8 @@ set cmdheight=2					" The command bar is 2 high
 set showmatch					" Show matching brackets
 set mat=5						" How many tenths of a second to blink matching brackets for
 set scrolloff=10				" Keep 10 lines (top/bottom) for scope
+set splitbelow					" Horizontal  split put the new window below (more intuitive)
+set splitright					" Vertical split put the new window on the right (more intuitive)
 set nostartofline				" Keep the cursor in the same colon when changing line
 set laststatus=2				" Always show the status line
 set report=0					" Always show a report when something changed
@@ -91,17 +93,17 @@ autocmd FileType c		source ~/.vim/includes/cfolding.vim
 
 " ================== Completion ==================
 
-set completeopt=longest,menuone,preview	" Completion list options
+set completeopt=longest,menuone	" Completion list options
 
-set wildmode=list:longest
 set wildmenu					" Allow tab completion in Vim menus
 
-set wildignore=*.o,*.obj,*~		" Completion ignore list
+set wildignore=*.o,*.obj,*.d	" Completion ignore list
 set wildignore+=*vim/temp*
 set wildignore+=*vim/undo*
 set wildignore+=*DS_Store*
 set wildignore+=log/**,tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=tags
 
 
 " ==================== Search ====================
@@ -130,12 +132,16 @@ elseif has("unix")
 endif
 
 colorscheme solarized			" Use Solarized theme
-set background=light			" with a light background
+set background=dark				" with a dark background
+
+" Fix to highlight function names in C
+autocmd FileType c	syntax match cCustomFunc /\w\+\s*(/me=e-1,he=e-1
+autocmd FileType c	highlight def link cCustomFunc Function
 
 
 " ========== Additional configurations ===========
 
+source ~/.vim/includes/plugins.vim
 source ~/.vim/includes/functions.vim
 source ~/.vim/includes/mappings.vim
-source ~/.vim/includes/plugins.vim
 
