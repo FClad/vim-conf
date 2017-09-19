@@ -79,7 +79,8 @@ function! VisualSearch(direction) range
     if a:direction == 'b'
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/gj ')
+        execute "vimgrep " . '/'. l:pattern . '/gj **/*'
+        " call CmdLine("vimgrep " . '/'. l:pattern . '/gj ')
     elseif a:direction == 'f'
         execute "normal /" . l:pattern . "^M"
     endif

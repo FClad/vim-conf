@@ -68,6 +68,7 @@ set smarttab					" Tabs at the start of a line, spaces elsewhere
 set noexpandtab					" Real tabs please!
 
 set textwidth=80				" Set line width
+set colorcolumn=81				" Show line width
 
 set formatoptions=tcrqn			" See Help (complex)
 
@@ -82,7 +83,6 @@ autocmd FileType tex	set nojoinspaces			" Disable joining spaces
 set nofoldenable				" Disable folding by default
 set foldnestmax=1				" Prevent nested folding
 
-autocmd FileType python	set foldmethod=indent
 autocmd FileType tex	set foldmethod=indent
 autocmd FileType c		set foldmethod=syntax
 autocmd FileType cpp	set foldmethod=syntax
@@ -101,7 +101,7 @@ set wildignore=*.o,*.obj,*.d	" Completion ignore list
 set wildignore+=*vim/temp*
 set wildignore+=*vim/undo*
 set wildignore+=*DS_Store*
-set wildignore+=log/**,tmp/**
+set wildignore+=log/**,tmp/**,ios/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=tags
 
@@ -117,13 +117,13 @@ set smartcase					" Except if a capital letter is used
 " ================== Appearance ==================
 
 if has("gui_running")
-    set guioptions=egmrt		" GUI settings
+    set guioptions=egmt		" GUI settings
 
 	" Set GUI font depending on the platform
 	if has("win32")
 		set guifont=Consolas\ for\ Powerline
 	elseif has("gui_macvim")
-		set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+		set guifont=Source\ Code\ Pro\ for\ Powerline:h15
 	else
 		set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 	endif
@@ -131,7 +131,7 @@ elseif has("unix")
 	set term=xterm-256color		" Force 256 color under Linux
 endif
 
-colorscheme solarized			" Use Solarized theme
+colorscheme onedark				" Use Atom's OneDark theme
 set background=dark				" with a dark background
 
 " Fix to highlight function names in C

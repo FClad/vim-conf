@@ -26,12 +26,13 @@ function! MyFoldText()
       endif
     endif
   endif
+  let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
   let n = v:foldend - v:foldstart + 1
-  let info = " " . n . " lines"
-  let sub = sub . "                                                                                                                  "
-  let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
-  let fold_w = getwinvar( 0, '&foldcolumn' )
-  let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
-  return sub . info
+  let sub = sub." "
+  let info = " " . n . " lines "
+  let exp1_len = (strwidth(sub) < w/2) ? (w / 2 - strwidth(info)) : (w - strwidth(sub.info))
+  let exp1 = repeat("-", exp1_len)
+  let exp2 = repeat(" ", w - strwidth(exp1.sub.info))
+  return sub . exp2 . exp1 . info
 endfunction
 

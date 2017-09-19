@@ -20,6 +20,14 @@ vmap				<TAB>		>
 vnoremap			<			<gv
 vmap				<S-TAB>		<
 
+" Use <Ctrl-TAB> and <Ctrl-Shift-TAB> to switch buffers in MRU order
+nnoremap			<C-TAB>		:MBEbb<CR>
+imap				<C-TAB>		<C-c><C-TAB>
+vmap				<C-TAB>		<C-c><C-TAB>
+nnoremap			<C-S-TAB>	:MBEbf<CR>
+imap				<C-S-TAB>	<C-c><C-S-TAB>
+vmap				<C-S-TAB>	<C-c><C-S-TAB>
+
 " <Ctrl-Z> to undo the last change
 nnoremap			<C-z>		u
 imap				<C-z>		<C-o><C-z>
@@ -39,6 +47,11 @@ nnoremap			<C-s>		:w<CR>
 imap				<C-s>		<C-o><C-s>
 vmap				<C-s>		<C-c><C-s>
 
+" <Ctrl-Q> to wipe the current buffer, preserving the window
+nnoremap			<C-q>		:MBEbw<CR>
+
+" <Ctrl-Q> to close the current window
+" nnoremap			<C-q>		:q<CR>
 
 " <Shift-Arrows> to move between windows
 nnoremap <silent>	<S-Left>	:wincmd h<CR>
@@ -83,23 +96,23 @@ vnoremap <silent>	#			:call VisualSearch('b')<CR>
 map					<leader>g	:vimgrep // **/*.<left><left><left><left><left><left><left>
 
 
-" <F1> to open CtrlSpace BufferList
-nnoremap			<F1>		:CtrlSpace<CR>
-imap				<F1>		<C-c><F3>
-vmap				<F1>		<C-c><F3>
+" <F1> to open alternate file (e.g. %.h from %.c)
+nnoremap			<F1>		:call SmartAlt()<CR>
+imap				<F1>		<C-c><F1>
+vmap				<F1>		<C-c><F1>
 
-" <Shift-F1> to open alternate file (e.g. %.h from %.c)
-nnoremap			<S-F1>		:call SmartAlt()<CR>
+" <Shift-F1> to change focus to MBE window
+nnoremap			<S-F1>		:MBEFocus<CR>
 imap				<S-F1>		<C-c><S-F1>
 vmap				<S-F1>		<C-c><S-F1>
 
-" <F2> to open CtrlSpace TabList
-nnoremap			<F2>		:CtrlSpace l<CR>
+" <F2> to toggle the Quickfix pane
+nnoremap <silent>	<F2>		:QToggle<CR>
 imap				<F2>		<C-c><F2>
 vmap				<F2>		<C-c><F2>
 
-" <Shift-F2> to open CtrlSpace FileList
-nnoremap			<S-F2>		:CtrlSpace o<CR>
+" <Shift-F2> to open VimFiler explorer
+nnoremap			<S-F2>		:VimFilerExplorer -winwidth=25 -split<CR>
 imap				<S-F2>		<C-c><S-F2>
 vmap				<S-F2>		<C-c><S-F2>
 
@@ -108,20 +121,15 @@ nnoremap <silent>	<F3>		:LToggle<CR>
 imap				<F3>		<C-c><F3>
 vmap				<F3>		<C-c><F3>
 
-" <Shift-F3> to toggle the Quickfix pane
-nnoremap <silent>	<S-F3>		:QToggle<CR>
-imap				<S-F3>		<C-c><S-F3>
-vmap				<S-F3>		<C-c><S-F3>
-
 " <F4> to run a syntax check
 nnoremap <silent>	<F4>		:YcmDiags<CR>
 imap				<F4>		<C-o><F4>
 vmap				<F4>		<C-c><F4>
 
 " <Shift-F4> to toggle Tagbar pane
-nnoremap <silent>	<S-F4>		:TagbarToggle<CR>
-imap				<S-F4>		<C-c><S-F4>
-vmap				<S-F4>		<C-c><S-F4>
+" nnoremap <silent>	<S-F4>		:TagbarToggle<CR>
+" imap				<S-F4>		<C-c><S-F4>
+" vmap				<S-F4>		<C-c><S-F4>
 
 " <F5> to build (make) the program
 nnoremap			<F5>		:call SmartMake()<CR>
@@ -139,7 +147,8 @@ imap				<F7>		<C-o><F7>
 vnoremap <silent>	<F7>		:call VisualSearch('f')<CR>:set hls<CR>
 
 " <Shift-F7> to 'Vimgrep' the word under cursor or the selected text
-nnoremap			<S-F7>		:call CmdLine('vimgrep /'.expand('<cword>').'/gj ')<CR>
+nnoremap			<S-F7>		:vimgrep /<C-R>=expand("<cword>")<CR>/gj **/*<CR>:copen<CR>
+" nnoremap			<S-F7>		:call CmdLine('vimgrep /'.expand('<cword>').'/gj ')<CR>
 imap				<S-F7>		<Esc><S-F7>
 vnoremap			<S-F7>		:call VisualSearch('gv')<CR>
 
