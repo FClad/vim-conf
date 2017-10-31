@@ -34,6 +34,7 @@ let g:vimfiler_marked_file_icon = '✓'
 " Vim-airline
 let g:airline_powerline_fonts = 1	" Enable fancy symbols
 let g:airline#extensions#whitespace#mixed_indent_algo = 1 " Spaces after tabs
+let g:airline_theme='one'
 
 " CtrlSpace
 " let g:ctrlspace_use_tabline = 1

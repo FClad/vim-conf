@@ -131,8 +131,16 @@ elseif has("unix")
 	set term=xterm-256color		" Force 256 color under Linux
 endif
 
-colorscheme onedark				" Use Atom's OneDark theme
-set background=dark				" with a dark background
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+if (has("nvim"))
+	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+	set termguicolors
+endif
+
+set background=dark
+colorscheme one				" Use rakr/vim-one theme
 
 " Fix to highlight function names in C
 autocmd FileType c	syntax match cCustomFunc /\w\+\s*(/me=e-1,he=e-1

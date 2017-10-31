@@ -62,6 +62,7 @@ Plugin 'xolox/vim-easytags'			" Tag generation and syntax highlighting
 Plugin 'tpope/vim-fugitive'			" Git wrapper
 Plugin 'benmills/vimux'				" Run commands into from Vim into Tmux
 Plugin 'airblade/vim-gitgutter'		" Show Git diffs
+Plugin 'rakr/vim-one'
 
 
 " End of plugin initialization
