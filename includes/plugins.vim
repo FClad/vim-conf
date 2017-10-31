@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""""
 
 " YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'  
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tags_files = 1 " Tags file based completion
 let g:ycm_key_list_select_completion = ['<Down>'] " Removed <TAB> from the list
 let g:ycm_key_list_previous_completion = ['<Up>'] " Removed <S-TAB>
@@ -60,5 +60,5 @@ autocmd BufNewFile *.h TSkeletonSetup template.h
 " MiniBufExplorer
 let g:miniBufExplCycleArround = 1
 let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplShowBufNumbers = 0 
+let g:miniBufExplShowBufNumbers = 0
 
