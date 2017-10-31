@@ -44,6 +44,18 @@ if [ ! -d "${HOME}/.vim/bundle" ]; then
 	mkdir ${HOME}/.vim/bundle
 fi
 
+# Create NeoVim config file
+if [ ! -f "${HOME}/.config/nvim/init.vim" ]; then
+	echo "Initializing NeoVim configuration."
+	mkdir -p ${HOME}/.config/nvim/
+	echo """
+let g:loaded_python_provider=1
+set runtimepath+=~/.vim,~/.vim/after
+set packpath+=~/.vim
+source ~/.vimrc
+	""" > ${HOME}/.config/nvim/init.vim
+fi
+
 # Download Vundle plugin manager
 if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
 	echo "Downloading Vundle plugin manager."

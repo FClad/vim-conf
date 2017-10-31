@@ -127,7 +127,7 @@ if has("gui_running")
 	else
 		set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 	endif
-elseif has("unix")
+elseif !has("nvim") && has("unix")
 	set term=xterm-256color		" Force 256 color under Linux
 endif
 
