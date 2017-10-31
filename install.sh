@@ -19,7 +19,7 @@ fi
 if [ ! -L "${HOME}/.vimrc" ]; then
 	if [ -e "${HOME}/.vimrc" ] ; then
 		echo "Warning: a vimrc file already exists. Old file moved to vimrc.bak."
-		mv ${HOME}/.vimrc ${HOME}/vimrc.bak 
+		mv ${HOME}/.vimrc ${HOME}/vimrc.bak
 	fi
 	echo "Creating symbolic link for .vimrc file."
 	ln -s ${DIR}/vimrc ${HOME}/.vimrc
@@ -57,7 +57,7 @@ source ~/.vimrc
 fi
 
 # Download Vundle plugin manager
-if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+if [ ! -f "${HOME}/.vim/bundle/Vundle.vim" ]; then
 	echo "Downloading Vundle plugin manager."
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
