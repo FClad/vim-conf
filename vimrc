@@ -61,11 +61,11 @@ set undofile
 set autoindent					" Auto-indent
 set smartindent					" Smart-indent
 set cindent						" C-style indenting
-set tabstop=4					" Tabs are 4 spaces long
+set tabstop=4					" 4-spaces long tabs
 set softtabstop=4				" Unify
 set shiftwidth=4				" Unify
-set smarttab					" Tabs at the start of a line, spaces elsewhere
-set noexpandtab					" Real tabs please!
+set smarttab					" Ident with 'shiftwidth', align with 'tabstop'
+set noexpandtab					" Use real tabs
 
 set textwidth=80				" Set line width
 set colorcolumn=81				" Show line width
@@ -117,7 +117,7 @@ set smartcase					" Except if a capital letter is used
 " ================== Appearance ==================
 
 if has("gui_running")
-    set guioptions=egmt		" GUI settings
+	set guioptions=egmt		" GUI settings
 
 	" Set GUI font depending on the platform
 	if has("win32")
