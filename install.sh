@@ -5,10 +5,19 @@ SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
+# Check if NeoVim is installed
+which nvim &> /dev/null
+if [ $? -eq 0 ]; then
+	neovim_exists=1
+else
+	neovim_exists=0
+fi
+
 # Symlink .vim directory
-if [ "${DIR}" != "${HOME}/.vim" ]; then
+if [ "${DIR}" != "${HOME}/.vim" ] && [ ! -L "${HOME}/.vim" ]; then
 	if [ -e "${HOME}/.vim" ]; then
-		echo "Warning: a vim folder already exists. Old folder moved to vim_bak."
+		echo "Warning: a vim folder already exists in ${HOME}."
+		echo "Renaming existing folder as ${HOME}/vim_bak."
 		mv ${HOME}/.vim ${HOME}/vim_bak
 	fi
 	echo "Creating symbolic link for .vim folder."
@@ -18,13 +27,25 @@ fi
 # Symlink .vimrc file
 if [ ! -L "${HOME}/.vimrc" ]; then
 	if [ -e "${HOME}/.vimrc" ] ; then
-		echo "Warning: a vimrc file already exists. Old file moved to vimrc.bak."
+		echo "Warning: a vimrc file already exists in ${HOME}."
+		echo "Renaming existing file as ${HOME}/vimrc.bak."
 		mv ${HOME}/.vimrc ${HOME}/vimrc.bak
 	fi
 	echo "Creating symbolic link for .vimrc file."
 	ln -s ${DIR}/vimrc ${HOME}/.vimrc
 fi
 
+# Symlink NeoVim's init.vim file
+if [ $neovim_exists -eq 1 ] && [ ! -L "${HOME}/.config/nvim/init.vim" ]; then
+	if [ -e "${HOME}/.config/nvim/init.vim" ] ; then
+		echo "Warning: an init.vim file already exists in ${HOME}/.config/nvim."
+		echo "Renaming existing file as ${HOME}/.config/nvim/init.bak."
+		mv ${HOME}/.config/nvim/init.vim ${HOME}/.config/nvim/init.bak
+	fi
+	echo "Creating symbolic link for init.vim file."
+	mkdir -p ${HOME}/.config/nvim/
+	ln -s ${DIR}/init.vim ${HOME}/.config/nvim/init.vim
+fi
 
 # Create temp directory
 if [ ! -d "${HOME}/.vim/temp" ]; then
@@ -44,38 +65,19 @@ if [ ! -d "${HOME}/.vim/bundle" ]; then
 	mkdir ${HOME}/.vim/bundle
 fi
 
-# Create NeoVim config file
-if [ ! -f "${HOME}/.config/nvim/init.vim" ]; then
-	echo "Initializing NeoVim configuration."
-	mkdir -p ${HOME}/.config/nvim/
-	echo """
-let g:loaded_python_provider=1
-set runtimepath+=~/.vim,~/.vim/after
-set packpath+=~/.vim
-source ~/.vimrc
-	""" > ${HOME}/.config/nvim/init.vim
-fi
-
 # Download Vundle plugin manager
-if [ ! -f "${HOME}/.vim/bundle/Vundle.vim" ]; then
+if [ ! -d "${DIR}/bundle/Vundle.vim" ]; then
 	echo "Downloading Vundle plugin manager."
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git ${DIR}/bundle/Vundle.vim
 fi
 
-# Check whether YouCompleteMe is already installed
-if [ ! -d "${HOME}/.vim/bundle/YouCompleteMe" ]; then
-	ycm_exists=false
-else
-	ycm_exists=true
-fi
-
-# Install any missing plugin
-echo "Installing plugins."
-vim +PluginInstall +qall
+# Clean, update and install plugins
+echo "Cleaning, updating and installing plugins."
+vim +PluginClean +PluginUpdate +PluginInstall +qall
 
 # Compile YCM
-if [ ! ycm_exists ]; then
+if [ -d "${DIR}/bundle/YouCompleteMe" ]; then
 	echo "Compiling YCM."
-	cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
+	cd ${DIR}/bundle/YouCompleteMe && ./install.py --clang-completer
 fi
 

@@ -22,7 +22,7 @@ endif
 
 
 " Let Vundle manage itself
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Essentials
 Plugin 'sjl/gundo.vim'				" Show undo tree
